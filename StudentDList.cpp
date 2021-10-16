@@ -12,9 +12,20 @@ cout << endl;
 cout << "Input ID: ";
 cin >> newNode->ID;
 cout << "What year is this student in?";
+while(newNode->year <1 || newNode->year > 4){
 cin >> newNode->year;
-//Make sure its between 1 and 4
+if(newNode->year <1 || newNode->year > 4){
+cout << "Invalid input" << endl;
+}
+}
 return newNode;
+}
+
+void StudentDList::printAll(){
+    StuNode *print = StuHead;
+    while(print != nullptr){
+        print->printStudent();
+    }
 }
 
 StudentDList::StudentDList(){
