@@ -1,6 +1,6 @@
 # Project01
 
-This project is made of 3 parts, with each having 2 files associated with each, a header file to initially lay out the functions and variables within each, and the functions themselves. Within the book function, There are three variables, a string for the name, an int for the date of retrival, and a boolean that returns true if the book is renewable, and false if it is not. There is also a pointer to another Book object within this, and this is in order to help create a singly linked list of book objects with an instance of the StuNode class being what provides the header for this. Within the book object, there is the Constructor and a print function.
+This project is made of 3 parts plus a main Project1.cpp file, with each of the three parts having 2 files associated with each, a header file to initially lay out the functions and variables within each, and the functions themselves. Within the book function, There are three variables, a string for the name, an int for the date of retrival, and a boolean that returns true if the book is renewable, and false if it is not. There is also a pointer to another Book object within this, and this is in order to help create a singly linked list of book objects with an instance of the StuNode class being what provides the header for this. Within the book object, there is the Constructor and a print function.
 Next, there is the StuNode class, which is a little bulkier when compared to the book object. 
 
 
@@ -37,7 +37,7 @@ void updateStu(); Allows the user to update information about any singular stuNo
 
 void DelStu(int ID); Uses SearchNode to help find the node that needs to be deleted and deletes it.
 
-Also contains a main function in Project 01 to have an access point to use the functions.
+Also contains a main function in Project 01 to have an access point to use the functions, and for the skeleton I had used leftover code from a previous lab I had worked on in order to make things easier.
 
 Funnily enough, id actually say this felt a little easier to work with than normal labs, mostly because I felt like I had a little more freedom with what I did so things didnt seem as limited as before. Id say it looks good, but who knows.
 
