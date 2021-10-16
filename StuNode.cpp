@@ -50,24 +50,33 @@ void StuNode::delBook(string name){
 
 }
 
-void StuNode::printStudent(StuNode *Student){
-    cout << "The student's name is " << Student->stuName << endl;
-    cout << "The student's ID is " << Student->ID << endl;
+void StuNode::printStudent(){
+    cout << "The student's name is " << stuName << endl;
+    cout << "The student's ID is " << ID << endl;
     cout << "The student is a ";
-    if (Student->year == 1){
+    if (year == 1){
         cout << "Freshman" << endl;
     }
-    if (Student->year == 2){
+    if (year == 2){
         cout << "Sophomore" << endl;
     }
-    if (Student->year == 3){
+    if (year == 3){
         cout << "Junior" << endl;
     }
-    if (Student->year == 4){
+    if (year == 4){
         cout << "Senior" << endl;
     }
+    cout << "These are the student's books: " << endl;
+    printBooks();
 }
 
+void StuNode::printBooks(){
+Book *newBook = Bookhead;
+while(newBook != nullptr){
+    newBook->printBook();
+    newBook = newBook->next;
+}
+}
 
 Book *StuNode::CreateBookNode(){
 Book *newBook = new Book();
