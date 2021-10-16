@@ -10,13 +10,13 @@ int ID;
 int year;
 StuNode *Next;
 StuNode *Previous;
-StuNode *CreateStuNode();
 Book *SearchBook(string name);
 Book *Bookhead;
 void insertBook();
 void delBook(string name);
-void printStudent(StuNode *Student);
+void printStudent();
 Book *CreateBookNode();
+void printBooks();
 };
 
 
