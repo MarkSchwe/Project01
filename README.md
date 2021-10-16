@@ -37,6 +37,8 @@ void updateStu(); Allows the user to update information about any singular stuNo
 
 void DelStu(int ID); Uses SearchNode to help find the node that needs to be deleted and deletes it.
 
+Also contains a main function in Project 01 to have an access point to use the functions.
+
 Funnily enough, id actually say this felt a little easier to work with than normal labs, mostly because I felt like I had a little more freedom with what I did so things didnt seem as limited as before. Id say it looks good, but who knows.
 
 ~Mark
