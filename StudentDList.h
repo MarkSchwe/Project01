@@ -8,11 +8,9 @@ StuNode *StuHead;
 StuNode *CreateStuNode();
 StudentDList();
 StuNode *SearchNode(int ID);
-//Create
+void printAll();
 void InsertStu();
-//Update
 void updateStu();
-//Delete
 void DelStu(int ID);
 };
 
