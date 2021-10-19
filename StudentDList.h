@@ -11,7 +11,8 @@ StuNode *SearchNode(int ID);
 void printAll();
 void InsertStu();
 void updateStu();
-void DelStu(int ID);
+void DelStu(int findID);
+void BookMenu();
 };
 
 #endif
