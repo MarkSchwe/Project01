@@ -5,8 +5,18 @@ using namespace std;
 StuNode::StuNode(){
 Next = this;
 Previous = this;
-Bookhead = nullptr;
+Bookhead = new Book();
 }
+
+StuNode::StuNode(int newyear,string newname,int newID){
+Next = this;
+Previous = this;
+Bookhead = nullptr;
+year = newyear;
+stuName = newname;
+ID = newID;
+}
+
 
 Book *StuNode::SearchBook(string name){
 Book *newBook = Bookhead;
@@ -27,7 +37,7 @@ Book *newBook = Bookhead;
 while(newBook->next != nullptr){
     newBook = newBook->next;
 }
-add = newBook->next;
+newBook->next = add;
 }
 
 void StuNode::delBook(string name){
@@ -73,7 +83,9 @@ void StuNode::printStudent(){
 void StuNode::printBooks(){
 Book *newBook = Bookhead;
 while(newBook != nullptr){
+    if(newBook != Bookhead){
     newBook->printBook();
+    }
     newBook = newBook->next;
 }
 }
@@ -96,4 +108,14 @@ if (yn == "no"){
     newBook->renewable = false;
 }
 return newBook;
+}
+
+void StuNode::setID(int newID){
+    ID = newID;
+}
+void StuNode::setName(string newName){
+    stuName = newName;
+}
+void StuNode::setyear(int newYear){
+    year = newYear;
 }
