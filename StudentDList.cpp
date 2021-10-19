@@ -5,43 +5,45 @@
 using namespace std;
 
 StuNode *StudentDList::CreateStuNode(){
-StuNode *newNode = new StuNode();
+    string newName;
+    int newID;
+    int newyear;
 cout << "Input name: ";
-cin >> newNode->stuName;
-cout << endl;
+cin >> newName;
 cout << "Input ID: ";
-cin >> newNode->ID;
-cout << "What year is this student in?";
-while(newNode->year <1 || newNode->year > 4){
-cin >> newNode->year;
-if(newNode->year <1 || newNode->year > 4){
+cin >> newID;
+cout << "What year is this student in? ";
+while(newyear <1 || newyear > 4){
+cin >> newyear;
+if(newyear <1 || newyear > 4){
 cout << "Invalid input" << endl;
 }
 }
+StuNode *newNode = new StuNode(newyear, newName, newID);
+
 return newNode;
 }
 
 void StudentDList::printAll(){
-    StuNode *print = StuHead;
-    while(print != nullptr){
+    StuNode *print = StuHead->Next;
+    while(print != StuHead){
         print->printStudent();
+        print = print->Next;
+        cout << endl;
     }
 }
 
 StudentDList::StudentDList(){
-    StuHead = nullptr;
+    StuHead = new StuNode();
 }
 
+
+
 void StudentDList::InsertStu(){
-StuNode *newNode, *Created;
-Created = CreateStuNode();
-newNode = StuHead;
-while(newNode->Next != nullptr){
-    newNode = newNode->Next;
-}
-newNode->Next = Created;
-Created->Previous = newNode;
+StuNode* Created = CreateStuNode();
+Created->Previous = StuHead->Previous;
 Created->Next = StuHead;
+StuHead->Previous->Next = Created;
 StuHead->Previous = Created;
 }
 
@@ -82,18 +84,18 @@ while(year < 1 || year > 4){
 }
 string yn = "";
 cout << "Update Book selection? "<< endl;
-while (yn != "yes" || yn != "no"){
+while (yn != "yes" && yn != "no"){
 cin >> yn;
-if (yn != "yes" || yn != "no"){
+if (yn != "yes" && yn != "no"){
     cout << "invalid Input" << endl;
 }
 }
 string option;
 if (yn == "yes"){
     cout << "Input decition: (del for delete, add for add, upd for update) ";
-    while (option != "del" || option != "add" || option != "upd"){
+    while (option != "del" && option != "add" && option != "upd"){
         cin >> option;
-        if (option != "del" || option != "add" || option != "upd"){
+        if (option != "del" && option != "add" && option != "upd"){
             cout << "Invalid option" << endl;
         }
     }
@@ -149,13 +151,10 @@ if (yn == "no"){
 }
 }
 
-void StudentDList::DelStu(int ID){
-int findID;
-cout << "Input ID number: ";
-cin >> findID;
+void StudentDList::DelStu(int findID){
 StuNode *befDel = SearchNode(findID);
-StuNode *del = SearchNode(findID)->Next;
-if(del == nullptr){
+StuNode *del = befDel->Next;
+if(del == nullptr || del == StuHead){
 return;
 }
 if(del != nullptr){
@@ -165,20 +164,51 @@ delete del;
 }
 }
 
+
 //Before thing with ID
 StuNode *StudentDList::SearchNode(int IDnum){
 StuNode *Search = StuHead;
-while (Search->Next != nullptr && Search->Next->ID != IDnum){
+while (Search->Next != StuHead && Search->Next->ID != IDnum){
 Search = Search->Next;
 }
 if (Search->Next->ID == IDnum){
     cout << "Student found" << endl;
-} else if (Search->Next == nullptr){
+    return Search;
+} else if (Search->Next == StuHead){
     cout << "Student Not found";
     return nullptr;
 }
-
-
-
 return Search;
+}
+
+
+void StudentDList::BookMenu(){
+    StuNode *checkNode;
+    int check, option;
+    string bookName;
+    cout << "Input ID for books to check: ";
+    cin >> check;
+    checkNode = SearchNode(check);
+    if(checkNode != nullptr){
+        cout << "Menu options:" << endl << "1: Insert a book" << endl << "2: Delete a book" << endl << "3: Print Book List" << endl;
+    while (option <1 || option > 3){
+        cin >> option;
+        if (option < 1 || option > 3){
+            cout << "Invalid input" << endl;
+        }
+    }
+    if(option == 1){
+        checkNode->insertBook();
+    }
+    if(option == 2){
+        cout << "Input name of book to delete: ";
+        cin >> bookName;
+        checkNode->delBook(bookName);
+    }
+    if(option == 3){
+        checkNode->printBooks();
+    }
+
+    }
+
 }
